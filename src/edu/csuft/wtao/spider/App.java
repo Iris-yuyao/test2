@@ -1,7 +1,7 @@
 package edu.csuft.wtao.spider;
 /**
  * 
- * @author ÁõÓñÑş
+ * @author yuyao
  *
  */
 public class App {
