@@ -20,6 +20,9 @@ public class App {
 		//使用jsoup抓取文档
 		try {
 			Document doc=Jsoup.connect(url).get();
+			/**
+			 * 在网格视图中找item (加空格)
+			 */
 			Elements es= doc.select(".grid_view .item");
 			System.out.println(es.size());
 			
@@ -30,9 +33,15 @@ public class App {
 			{
 				Film f=new Film();
 				//每一部影片
-				Element t=e.select(".title").first();
-				String num= e.select(".star span").last().text();
-				System.out.println(t.text()+","+num);
+				f.id=Integer.parseInt(e.select(".pic em").first().text());
+				f.poster=e.select("img").first().attr("src");
+				f.info=e.select(".bd p").first().text();
+				f.title=e.select(".title").first().text();
+				f.rating=Double.parseDouble(e.select(".rating_num").first().text());
+				String num=e.select(".star span").last().text();
+				f.num=Integer.parseInt(num.substring(0,num.length()-3));
+				f.quote=e.select(".inq").first().text();
+				System.out.println(f);
 //              f.id
 //              f.title
 				list.add(f);
