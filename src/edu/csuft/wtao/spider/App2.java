@@ -3,18 +3,24 @@ package edu.csuft.wtao.spider;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
 
 public class App2 {
 	public static void main(String[] args) {
-		/**
-		 * Â·¾¶
-		 */
-		String url="https://movie.douban.com/subject/1291560/";
+		String url="https://movie.douban.com/subject/1292052/";
 		try {
-			Document doc2=Jsoup.connect(url).get();
-			Element el= doc2.selectFirst("#content");
-			System.out.println(el);
+			Document d=Jsoup.connect(url).get();
+			Element e=d.getElementById("content");
+			String name=e.selectFirst("h1 span").text();
+			String year=e.selectFirst(".year").text();
+			String director= e.select("#info span").get(0).selectFirst(".attrs a").text();
+			String script= e.select("#info .attrs").get(1).text();
+			String actor=e.select("#info .actor").get(0).text();
+			System.out.println(name);
+			System.out.println(year);
+			System.out.println(director);
+			System.out.println(script);
+			System.out.println(actor);
+			
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
